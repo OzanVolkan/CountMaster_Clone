@@ -5,7 +5,9 @@ public enum GameEvent
 {
     OnGenerateStickman,
 
-    OnRunAnimation
+    OnRunAnimation,
+
+    OnReplaceStickmen
 }
 public static class EventManager
 {
