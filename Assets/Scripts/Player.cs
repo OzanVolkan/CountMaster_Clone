@@ -127,8 +127,13 @@ public class Player : MonoBehaviour
 
         childCounter.text = CalculateCount().ToString();
 
+        if (other.CompareTag("Finish"))
+        {
+            EventManager.Broadcast(GameEvent.OnFinish);
+            EventManager.Broadcast(GameEvent.OnCreateTower, transform.childCount -1);
+            counterMarkTrans.gameObject.SetActive(false);
+        }
     }
-
     private void PositionChecker()
     {
         //REPLACE Metodunu daha sonra silebilirim, optimizasyon için sürekli çaðýrmayabiliriz

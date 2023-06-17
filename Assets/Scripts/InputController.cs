@@ -10,8 +10,8 @@ public class InputController : MonoBehaviour, IPointerDownHandler, IDragHandler
     public float moveSpeed;
     public Transform playerTransform;
 
-    [SerializeField] private float movementSensitivity;
-    //public GameObject canvasUpgrade;
+    [SerializeField] GameObject startPanel, buttonPanel;
+    [SerializeField] float movementSensitivity;
     [SerializeField] float leftMovementLimit;
     [SerializeField] float rightMovementLimit;
 
@@ -44,6 +44,9 @@ public class InputController : MonoBehaviour, IPointerDownHandler, IDragHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        if (startPanel.activeInHierarchy) startPanel.SetActive(false);
+        if (buttonPanel.activeInHierarchy) buttonPanel.SetActive(false);
+
         GameManager.Instance.isMoving = true;
 
         Animator[] animators = playerTransform.GetComponent<Player>().animators;

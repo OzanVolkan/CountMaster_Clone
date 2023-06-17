@@ -9,6 +9,7 @@ TagManager:
   - Blue
   - Red
   - Jump
+  - Stair
   layers:
   - Default
   - TransparentFX

@@ -5,19 +5,26 @@ using System;
 using DG.Tweening;
 public class GameManager : SingletonManager<GameManager>
 {
+    public GameData gameData;
+    public GameObject finishCam;
+    public Transform playerTransform;
     public bool isMoving;
     public bool isAttacking;
+    public bool hasFinished;
+
 
     private void OnEnable()
     {
         EventManager.AddHandler(GameEvent.OnGenerateStickman, new Action<int, int, GameObject, Transform, Quaternion>(OnGenerateStickman));
         EventManager.AddHandler(GameEvent.OnReplaceStickmen, new Action<float, float, Transform>(OnReplaceStickmen));
+        EventManager.AddHandler(GameEvent.OnFinish, new Action(OnFinish));
     }
 
     private void OnDisable()
     {
         EventManager.RemoveHandler(GameEvent.OnGenerateStickman, new Action<int, int, GameObject, Transform, Quaternion>(OnGenerateStickman));
         EventManager.RemoveHandler(GameEvent.OnReplaceStickmen, new Action<float, float, Transform>(OnReplaceStickmen));
+        EventManager.RemoveHandler(GameEvent.OnFinish, new Action(OnFinish));
     }
     void Start()
     {
@@ -53,6 +60,11 @@ public class GameManager : SingletonManager<GameManager>
             }
         }
 
+    }
+    void OnFinish()
+    {
+        finishCam.SetActive(true);
+        hasFinished = true;
     }
 
     #endregion

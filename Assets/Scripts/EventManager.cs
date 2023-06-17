@@ -7,7 +7,11 @@ public enum GameEvent
 
     OnRunAnimation,
 
-    OnReplaceStickmen
+    OnReplaceStickmen,
+
+    OnFinish,
+
+    OnCreateTower
 }
 public static class EventManager
 {
