@@ -20,7 +20,7 @@ public class EnemyManager : MonoBehaviour
         int randomCount = Random.Range(20, 81);
         Quaternion enemyRot = new Quaternion(0f, 180f, 0f, 1f);
 
-        EventManager.Broadcast(GameEvent.OnGenerateStickman, randomCount, enemyStickman, transform,enemyRot);
+        EventManager.Broadcast(GameEvent.OnGenerateStickman, 0, randomCount, enemyStickman, transform, enemyRot);
         EventManager.Broadcast(GameEvent.OnReplaceStickmen, distance, radius, transform);
 
         childCounter.text = CalculateCount().ToString();
@@ -56,6 +56,8 @@ public class EnemyManager : MonoBehaviour
                     }
                 }
             }
+
+            childCounter.text = CalculateCount().ToString();
         }
     }
 
@@ -81,7 +83,7 @@ public class EnemyManager : MonoBehaviour
             }
         }
 
-        childCounter.text = CalculateCount().ToString();
+        //childCounter.text = CalculateCount().ToString();
     }
 
     private void OnTriggerStay(Collider other)

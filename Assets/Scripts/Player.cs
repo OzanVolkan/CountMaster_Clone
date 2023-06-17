@@ -71,6 +71,7 @@ public class Player : MonoBehaviour
 
             }
 
+            childCounter.text = CalculateCount().ToString();
         }
     }
 
@@ -106,11 +107,11 @@ public class Player : MonoBehaviour
             switch (lence.lenceType)
             {
                 case Lence.LenceType.Add:
-                    EventManager.Broadcast(GameEvent.OnGenerateStickman, operationNum, stickman, transform, Quaternion.identity);
+                    EventManager.Broadcast(GameEvent.OnGenerateStickman, totalStickmen, operationNum + totalStickmen, stickman, transform, Quaternion.identity);
                     break;
 
                 case Lence.LenceType.Multiply:
-                    EventManager.Broadcast(GameEvent.OnGenerateStickman, operationNum * totalStickmen, stickman, transform, Quaternion.identity);
+                    EventManager.Broadcast(GameEvent.OnGenerateStickman, totalStickmen, operationNum * totalStickmen, stickman, transform, Quaternion.identity);
                     break;
             }
             OnRunAnimation(GameManager.Instance.isMoving, animators);

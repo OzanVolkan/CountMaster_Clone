@@ -10,13 +10,13 @@ public class GameManager : SingletonManager<GameManager>
 
     private void OnEnable()
     {
-        EventManager.AddHandler(GameEvent.OnGenerateStickman, new Action<int, GameObject, Transform,Quaternion>(OnGenerateStickman));
+        EventManager.AddHandler(GameEvent.OnGenerateStickman, new Action<int, int, GameObject, Transform, Quaternion>(OnGenerateStickman));
         EventManager.AddHandler(GameEvent.OnReplaceStickmen, new Action<float, float, Transform>(OnReplaceStickmen));
     }
 
     private void OnDisable()
     {
-        EventManager.RemoveHandler(GameEvent.OnGenerateStickman, new Action<int, GameObject, Transform,Quaternion>(OnGenerateStickman));
+        EventManager.RemoveHandler(GameEvent.OnGenerateStickman, new Action<int, int, GameObject, Transform, Quaternion>(OnGenerateStickman));
         EventManager.RemoveHandler(GameEvent.OnReplaceStickmen, new Action<float, float, Transform>(OnReplaceStickmen));
     }
     void Start()
@@ -30,9 +30,9 @@ public class GameManager : SingletonManager<GameManager>
 
     #region EVENTS
 
-    void OnGenerateStickman(int number, GameObject stickmanType, Transform parent,Quaternion quaternion)
+    void OnGenerateStickman(int totalStickmen, int number, GameObject stickmanType, Transform parent, Quaternion quaternion)
     {
-        for (int i = 0; i < number; i++)
+        for (int i = totalStickmen; i < number; i++)
         {
             Instantiate(stickmanType, parent.transform.position, quaternion, parent.transform);
         }

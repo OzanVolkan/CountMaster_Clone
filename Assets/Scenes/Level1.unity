@@ -2090,7 +2090,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3455241635046586822, guid: 66ac17f0f1ae384479c3ba37eddf8069, type: 3}
       propertyPath: lenceType
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3455241635046586822, guid: 66ac17f0f1ae384479c3ba37eddf8069, type: 3}
       propertyPath: randomNum
@@ -2110,7 +2110,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3455241635046586823, guid: 66ac17f0f1ae384479c3ba37eddf8069, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.4
+      value: 4.13
       objectReference: {fileID: 0}
     - target: {fileID: 3455241635046586823, guid: 66ac17f0f1ae384479c3ba37eddf8069, type: 3}
       propertyPath: m_LocalRotation.w

@@ -18,7 +18,7 @@ public class Stickman : MonoBehaviour
                 break;
 
             case "Jump":
-                transform.DOLocalJump(transform.localPosition, 1f, 1, 1f).SetEase(Ease.Flash).OnComplete(() =>
+                transform.DOLocalJump(transform.localPosition, 1f, 1, 1.25f).SetEase(Ease.Flash).OnComplete(() =>
                 {
                     EventManager.Broadcast(GameEvent.OnReplaceStickmen, distance, radius, transform.parent);
                 });
