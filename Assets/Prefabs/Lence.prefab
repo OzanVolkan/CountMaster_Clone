@@ -279,7 +279,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b94e7cf585a4f4b458327c0b8902b2c1, type: 2}
+  - {fileID: 2100000, guid: 3f36e4d4fb23c8743878c3ada7c39cad, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -495,6 +495,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3455241635046586823}
   - component: {fileID: 3455241635046586822}
+  - component: {fileID: 1455240838}
   m_Layer: 0
   m_Name: Lence
   m_TagString: Lence
@@ -533,6 +534,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b922f2a7c0b632043b5146c357447a80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lenceType: 0
+  lenceType: 1
   lenceNum: {fileID: 3455241634092920995}
   randomNum: 0
+--- !u!65 &1455240838
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3455241635046586816}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.3375392, y: 0.58900744, z: 0.03980732}
+  m_Center: {x: 0.024612308, y: 0.08283314, z: 0.019180298}
