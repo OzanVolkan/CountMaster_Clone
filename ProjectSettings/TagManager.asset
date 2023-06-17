@@ -10,6 +10,7 @@ TagManager:
   - Red
   - Jump
   - Stair
+  - Obstacle
   layers:
   - Default
   - TransparentFX

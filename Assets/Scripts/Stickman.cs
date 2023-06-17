@@ -23,6 +23,11 @@ public class Stickman : MonoBehaviour
                 }
                 break;
 
+            case "Obstacle":
+                print("dssd");
+                Destroy(gameObject);
+                break;
+
             case "Jump":
                 transform.DOLocalJump(transform.localPosition, 1f, 1, 1.25f).SetEase(Ease.Flash).OnComplete(() =>
                 {
