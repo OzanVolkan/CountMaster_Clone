@@ -207,7 +207,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3455241635046586822, guid: 66ac17f0f1ae384479c3ba37eddf8069, type: 3}
       propertyPath: lenceType
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3455241635046586822, guid: 66ac17f0f1ae384479c3ba37eddf8069, type: 3}
       propertyPath: randomNum
@@ -1705,6 +1705,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1737888737417503497, guid: bb2966096414c204e9a70a36dc8cc80c, type: 3}
+      propertyPath: maxPlayerPerRow
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 6204791636819724728, guid: bb2966096414c204e9a70a36dc8cc80c, type: 3}
       propertyPath: m_Name
       value: Player
