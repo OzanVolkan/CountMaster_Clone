@@ -45,7 +45,9 @@ public class InputController : MonoBehaviour, IPointerDownHandler, IDragHandler
     public void OnPointerDown(PointerEventData eventData)
     {
         GameManager.Instance.isMoving = true;
-        EventManager.Broadcast(GameEvent.OnRunAnimation, GameManager.Instance.isMoving);
+
+        Animator[] animators = playerTransform.GetComponent<Player>().animators;
+        EventManager.Broadcast(GameEvent.OnRunAnimation, GameManager.Instance.isMoving,animators);
     }
     void Update()
     {

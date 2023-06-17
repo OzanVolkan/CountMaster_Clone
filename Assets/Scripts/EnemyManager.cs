@@ -10,6 +10,7 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] int totalStickmen;
     [Range(0f, 1f)] [SerializeField] float distance, radius;
 
+    private Animator[] animators;
     private Transform playerTransform;
     private bool canAttack;
 
@@ -23,6 +24,8 @@ public class EnemyManager : MonoBehaviour
 
         childCounter.text = CalculateCount().ToString();
         InvokeRepeating("PositionChecker", 0.1f, 0.1f);
+
+        animators = GetComponentsInChildren<Animator>();
     }
 
     void Update()
@@ -39,7 +42,6 @@ public class EnemyManager : MonoBehaviour
 
             if (playerTransform.childCount > 1)
             {
-                print("dsf");
 
                 for (int i = 1; i < transform.childCount; i++)
                 {
@@ -69,6 +71,13 @@ public class EnemyManager : MonoBehaviour
             playerTransform = other.transform;
             canAttack = true;
 
+            foreach (Animator animator in animators)
+            {
+                if (animator != null)
+                {
+                    animator.SetBool("Run", canAttack ? true : false);
+                }
+            }
         }
 
         childCounter.text = CalculateCount().ToString();

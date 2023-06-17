@@ -6,6 +6,8 @@ using System;
 using DG.Tweening;
 public class Player : MonoBehaviour
 {
+    public Animator[] animators;
+
     [SerializeField] Transform counterMarkTrans;
     [SerializeField] Transform enemyTransform;
     [SerializeField] GameObject stickman;
@@ -13,17 +15,16 @@ public class Player : MonoBehaviour
     [SerializeField] int totalStickmen;
     [Range(0f, 1f)] [SerializeField] float distance, radius;
 
-    private Animator[] animators;
     private float rotateSpeed = 3f;
 
     private void OnEnable()
     {
-        EventManager.AddHandler(GameEvent.OnRunAnimation, new Action<bool>(OnRunAnimation));
+        EventManager.AddHandler(GameEvent.OnRunAnimation, new Action<bool, Animator[]>(OnRunAnimation));
     }
 
     private void OnDisable()
     {
-        EventManager.RemoveHandler(GameEvent.OnRunAnimation, new Action<bool>(OnRunAnimation));
+        EventManager.RemoveHandler(GameEvent.OnRunAnimation, new Action<bool, Animator[]>(OnRunAnimation));
     }
     void Start()
     {
@@ -62,7 +63,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    void OnRunAnimation(bool isMoving)
+    void OnRunAnimation(bool isMoving, Animator[] animators)
     {
         animators = GetComponentsInChildren<Animator>();
 
@@ -101,7 +102,7 @@ public class Player : MonoBehaviour
                     EventManager.Broadcast(GameEvent.OnGenerateStickman, operationNum * totalStickmen, stickman, transform, Quaternion.identity);
                     break;
             }
-            OnRunAnimation(GameManager.Instance.isMoving);
+            OnRunAnimation(GameManager.Instance.isMoving, animators);
             EventManager.Broadcast(GameEvent.OnReplaceStickmen, distance, radius, transform);
             //2 kere triggera girmemesi için buarada bir þeyler yaz
         }
