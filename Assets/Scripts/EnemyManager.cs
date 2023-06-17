@@ -83,6 +83,28 @@ public class EnemyManager : MonoBehaviour
 
         childCounter.text = CalculateCount().ToString();
     }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerTransform = other.transform;
+
+            if (playerTransform.childCount <= 1) StopAttacking();
+        }
+    }
+    private void StopAttacking()
+    {
+        canAttack = false;
+
+        foreach (Animator animator in animators)
+        {
+            if (animator != null)
+            {
+                animator.SetBool("Run", canAttack ? true : false);
+            }
+        }
+    }
     private void PositionChecker()
     {
         counterMarkTrans.rotation = Quaternion.LookRotation(counterMarkTrans.position - Camera.main.transform.position);
