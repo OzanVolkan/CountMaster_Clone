@@ -7,7 +7,7 @@ public class InputController : MonoBehaviour, IPointerDownHandler, IDragHandler
 {
     //[HideInInspector] public GameObject tutorialPanel;
 
-    public int moveSpeed;
+    public float moveSpeed;
     public Transform playerTransform;
 
     [SerializeField] private float movementSensitivity;
@@ -34,10 +34,12 @@ public class InputController : MonoBehaviour, IPointerDownHandler, IDragHandler
         rightMovementLimit = 1.4f - ((crowdedness / 10f) * 0.11f);
         leftMovementLimit = -rightMovementLimit;
 
-        Vector3 tempPosition = playerTransform.localPosition;
-        tempPosition.x = Mathf.Clamp(tempPosition.x + (eventData.delta.x / movementSensitivity), leftMovementLimit, rightMovementLimit);
-        playerTransform.localPosition = tempPosition;
-
+        if (!GameManager.Instance.isAttacking)
+        {
+            Vector3 tempPosition = playerTransform.localPosition;
+            tempPosition.x = Mathf.Clamp(tempPosition.x + (eventData.delta.x / movementSensitivity), leftMovementLimit, rightMovementLimit);
+            playerTransform.localPosition = tempPosition;
+        }
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -47,10 +49,11 @@ public class InputController : MonoBehaviour, IPointerDownHandler, IDragHandler
     }
     void Update()
     {
+        moveSpeed = GameManager.Instance.isAttacking ? 0.5f : 2f;
+
         if (GameManager.Instance.isMoving)
         {
             playerTransform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
-
         }
 
     }

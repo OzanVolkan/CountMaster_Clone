@@ -6,6 +6,7 @@ using DG.Tweening;
 public class GameManager : SingletonManager<GameManager>
 {
     public bool isMoving;
+    public bool isAttacking;
 
     private void OnEnable()
     {

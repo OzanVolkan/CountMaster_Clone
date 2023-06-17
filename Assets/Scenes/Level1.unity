@@ -172,6 +172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   counterMarkTrans: {fileID: 890888606}
+  enemyTransform: {fileID: 0}
   stickman: {fileID: 1683363806573965745, guid: 47727651d5b89224693034271267e74b, type: 3}
   childCounter: {fileID: 311730768}
   totalStickmen: 0
@@ -1385,10 +1386,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1184071019}
-  - component: {fileID: 1184071020}
   m_Layer: 0
   m_Name: EnemyArea
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1401,7 +1401,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1184071017}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.3, z: 1.25}
+  m_LocalPosition: {x: 0, y: 0.3, z: 18.79}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -1410,19 +1410,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!65 &1184071020
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1184071017}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 9, y: 9, z: 0.20000005}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1185293160
 GameObject:
   m_ObjectHideFlags: 0
@@ -1559,9 +1546,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1649292632}
   - component: {fileID: 1649292633}
+  - component: {fileID: 1649292634}
   m_Layer: 0
   m_Name: EnemyManager
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1598,8 +1586,21 @@ MonoBehaviour:
   enemyStickman: {fileID: 6230187244644884870, guid: 1a0f7052ab9db2c44a78e8d075a8613b, type: 3}
   childCounter: {fileID: 355246274}
   totalStickmen: 0
-  distance: 0.075
+  distance: 0.08
   radius: 1
+--- !u!65 &1649292634
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1649292628}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.5, y: 0.5, z: 2.4999995}
+  m_Center: {x: 0, y: 0.23221317, z: 0}
 --- !u!1 &1832921700
 GameObject:
   m_ObjectHideFlags: 0
@@ -1630,6 +1631,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isMoving: 0
+  isAttacking: 0
 --- !u!4 &1832921702
 Transform:
   m_ObjectHideFlags: 0

@@ -7,12 +7,14 @@ using DG.Tweening;
 public class Player : MonoBehaviour
 {
     [SerializeField] Transform counterMarkTrans;
+    [SerializeField] Transform enemyTransform;
     [SerializeField] GameObject stickman;
     [SerializeField] TextMeshProUGUI childCounter;
     [SerializeField] int totalStickmen;
-    [Range(0f, 1f)] [SerializeField] private float distance, radius;
+    [Range(0f, 1f)] [SerializeField] float distance, radius;
 
     private Animator[] animators;
+    private float rotateSpeed = 3f;
 
     private void OnEnable()
     {
@@ -32,7 +34,32 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.Instance.isAttacking)
+        {
+            Vector3 enemyDirection = new Vector3(enemyTransform.position.x, transform.position.y, enemyTransform.position.z) - transform.position;
 
+            for (int i = 1; i < transform.childCount; i++)
+            {
+                transform.GetChild(i).rotation =
+                    Quaternion.Slerp(transform.GetChild(i).rotation, Quaternion.LookRotation(enemyDirection, Vector3.up), Time.deltaTime * rotateSpeed);
+            }
+
+            if (enemyTransform.childCount > 1)
+            {
+                for (int i = 1; i < transform.childCount; i++)
+                {
+                    var Distance = enemyTransform.position - transform.GetChild(i).position;
+
+                    if (Distance.magnitude < 2f)
+                    {
+                        transform.GetChild(i).position = Vector3.Lerp(transform.GetChild(i).position,
+                            new Vector3(enemyTransform.GetChild(1).position.x, transform.GetChild(i).position.y,
+                                enemyTransform.GetChild(1).position.z), Time.deltaTime);
+                    }
+                }
+            }
+
+        }
     }
 
     void OnRunAnimation(bool isMoving)
@@ -78,13 +105,20 @@ public class Player : MonoBehaviour
             EventManager.Broadcast(GameEvent.OnReplaceStickmen, distance, radius, transform);
             //2 kere triggera girmemesi için buarada bir þeyler yaz
         }
+
+        if (other.CompareTag("Enemy"))
+        {
+            enemyTransform = other.transform;
+            GameManager.Instance.isAttacking = true;
+        }
+
         childCounter.text = CalculateCount().ToString();
 
     }
 
     private void PositionChecker()
     {
-        EventManager.Broadcast(GameEvent.OnReplaceStickmen, distance, radius, transform);
+        //REPLACE Metodunu daha sonra silebilirim, optimizasyon için sürekli çaðýrmayabiliriz
         counterMarkTrans.rotation = Quaternion.LookRotation(counterMarkTrans.position - Camera.main.transform.position);
     }
 
