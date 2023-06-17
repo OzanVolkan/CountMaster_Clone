@@ -59,6 +59,17 @@ public class Player : MonoBehaviour
                     }
                 }
             }
+            else
+            {
+                enemyTransform.gameObject.SetActive(false);
+
+                GameManager.Instance.isAttacking = false;
+                EventManager.Broadcast(GameEvent.OnReplaceStickmen, distance, radius, transform);
+
+                for (int i = 1; i < transform.childCount; i++)
+                    transform.GetChild(i).rotation = Quaternion.identity;
+
+            }
 
         }
     }

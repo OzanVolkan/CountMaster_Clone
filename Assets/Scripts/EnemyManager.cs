@@ -13,6 +13,7 @@ public class EnemyManager : MonoBehaviour
     private Animator[] animators;
     private Transform playerTransform;
     private bool canAttack;
+    private float rotateSpeed = 3f;
 
     void Start()
     {
@@ -37,7 +38,7 @@ public class EnemyManager : MonoBehaviour
             for (int i = 1; i < transform.childCount; i++)
             {
                 transform.GetChild(i).rotation =
-                    Quaternion.Slerp(transform.GetChild(i).rotation, Quaternion.LookRotation(playerDirection, Vector3.up), Time.deltaTime);
+                    Quaternion.Slerp(transform.GetChild(i).rotation, Quaternion.LookRotation(playerDirection, Vector3.up), Time.deltaTime * rotateSpeed);
             }
 
             if (playerTransform.childCount > 1)

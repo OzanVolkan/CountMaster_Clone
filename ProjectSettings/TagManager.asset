@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Lence
   - Enemy
+  - Blue
+  - Red
   layers:
   - Default
   - TransparentFX
