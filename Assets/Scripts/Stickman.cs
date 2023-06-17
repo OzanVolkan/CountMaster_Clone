@@ -31,6 +31,12 @@ public class Stickman : MonoBehaviour
                 break;
 
             case "Stair":
+                if (!GameManager.Instance.reachedStairs)
+                {
+                    GameManager.Instance.reachedStairs = true;
+                    EventManager.Broadcast(GameEvent.OnFinishCamFollow);
+                }
+                
                 transform.parent.parent = null; // for instance tower_0
                 transform.parent = null; // stickman
                 GetComponent<Rigidbody>().isKinematic = false;

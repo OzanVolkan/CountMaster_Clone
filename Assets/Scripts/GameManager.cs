@@ -5,19 +5,23 @@ using System;
 using DG.Tweening;
 public class GameManager : SingletonManager<GameManager>
 {
+    public List<GameObject> towerList = new List<GameObject>();
     public GameData gameData;
     public GameObject finishCam;
     public Transform playerTransform;
     public bool isMoving;
     public bool isAttacking;
     public bool hasFinished;
+    public bool reachedStairs;
 
-
+    private Transform target;
+    private float followOffset = 2.75f;
     private void OnEnable()
     {
         EventManager.AddHandler(GameEvent.OnGenerateStickman, new Action<int, int, GameObject, Transform, Quaternion>(OnGenerateStickman));
         EventManager.AddHandler(GameEvent.OnReplaceStickmen, new Action<float, float, Transform>(OnReplaceStickmen));
         EventManager.AddHandler(GameEvent.OnFinish, new Action(OnFinish));
+        EventManager.AddHandler(GameEvent.OnFinishCamFollow, new Action(OnFinishCamFollow));
     }
 
     private void OnDisable()
@@ -25,14 +29,7 @@ public class GameManager : SingletonManager<GameManager>
         EventManager.RemoveHandler(GameEvent.OnGenerateStickman, new Action<int, int, GameObject, Transform, Quaternion>(OnGenerateStickman));
         EventManager.RemoveHandler(GameEvent.OnReplaceStickmen, new Action<float, float, Transform>(OnReplaceStickmen));
         EventManager.RemoveHandler(GameEvent.OnFinish, new Action(OnFinish));
-    }
-    void Start()
-    {
-    }
-
-    void Update()
-    {
-
+        EventManager.RemoveHandler(GameEvent.OnFinishCamFollow, new Action(OnFinishCamFollow));
     }
 
     #region EVENTS
@@ -65,6 +62,12 @@ public class GameManager : SingletonManager<GameManager>
     {
         finishCam.SetActive(true);
         hasFinished = true;
+    }
+
+    void OnFinishCamFollow()
+    {
+        Cinemachine.CinemachineVirtualCamera finCam = finishCam.GetComponent<Cinemachine.CinemachineVirtualCamera>();
+        finCam.m_Follow = towerList[0].transform;
     }
 
     #endregion

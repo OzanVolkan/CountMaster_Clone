@@ -201,10 +201,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxPlayerPerRow: 7
   xGap: 0.2
-  yGap: 0.52
+  yGap: 0.39
   yOffset: 0
   towerCountList: 
-  towerList: []
 --- !u!1 &6204791637073009415
 GameObject:
   m_ObjectHideFlags: 0

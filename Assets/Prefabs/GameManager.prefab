@@ -44,9 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 593da2bd0c4ae1e4ba6e7dc9d9bf94d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  towerList: []
   gameData: {fileID: 11400000, guid: 4999c00a7da644d4e8249565b3d4887d, type: 2}
+  finishCam: {fileID: 0}
   playerTransform: {fileID: 0}
   isMoving: 0
   isAttacking: 0
   hasFinished: 0
-  finishCam: {fileID: 0}
+  reachedStairs: 0

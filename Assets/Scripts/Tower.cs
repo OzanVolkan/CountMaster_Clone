@@ -13,9 +13,7 @@ public class Tower : MonoBehaviour
     [Range(0f, 10f)] [SerializeField] private float yOffset;
 
     [SerializeField] private List<int> towerCountList = new List<int>();
-    [SerializeField] private List<GameObject> towerList = new List<GameObject>();
-
-    private Transform target;
+    //[SerializeField] private List<GameObject> towerList = new List<GameObject>();
 
     private void OnEnable()
     {
@@ -65,7 +63,7 @@ public class Tower : MonoBehaviour
 
         foreach (int towerHumanCount in towerCountList)
         {
-            foreach (GameObject child in towerList)
+            foreach (GameObject child in GameManager.Instance.towerList)
             {
                 child.transform.DOLocalMove(child.transform.localPosition + new Vector3(0, yGap, 0), 0.2f).SetEase(Ease.OutQuad);
             }
@@ -75,7 +73,7 @@ public class Tower : MonoBehaviour
             tower.transform.parent = transform;
             tower.transform.localPosition = new Vector3(0, 0, 0);
 
-            towerList.Add(tower);
+            GameManager.Instance.towerList.Add(tower);
 
             var towerNewPos = Vector3.zero;
             float tempTowerHumanCount = 0;
@@ -98,18 +96,6 @@ public class Tower : MonoBehaviour
             tower.transform.position = new Vector3(-towerNewPos.x / towerHumanCount, tower.transform.position.y - yOffset, tower.transform.position.z);
 
             towerId++;
-
-
-            for (int i = 0; i < towerList.Count; i++)
-            {
-                if (towerList[i].transform.childCount > 0)
-                    target = towerList[i].transform;
-
-                yield return null;
-            }
-
-            Cinemachine.CinemachineVirtualCamera finCam = GameManager.Instance.finishCam.GetComponent<Cinemachine.CinemachineVirtualCamera>();
-            finCam.m_Follow = target;
 
             yield return new WaitForSecondsRealtime(0.2f);
         }

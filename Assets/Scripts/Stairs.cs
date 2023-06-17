@@ -14,9 +14,4 @@ public class Stairs : MonoBehaviour
             renderer.material.color = GameManager.Instance.gameData.stairColors[randomIndex];
         }
     }
-
-    void Update()
-    {
-        
-    }
 }
