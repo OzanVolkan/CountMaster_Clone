@@ -51,7 +51,7 @@ public class Player : MonoBehaviour
                 {
                     var Distance = enemyTransform.position - transform.GetChild(i).position;
 
-                    if (Distance.magnitude < 2f)
+                    if (Distance.magnitude < 2.5f)
                     {
                         transform.GetChild(i).position = Vector3.Lerp(transform.GetChild(i).position,
                             new Vector3(enemyTransform.GetChild(1).position.x, transform.GetChild(i).position.y,

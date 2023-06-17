@@ -34,7 +34,7 @@ public class InputController : MonoBehaviour, IPointerDownHandler, IDragHandler
         rightMovementLimit = 1.4f - ((crowdedness / 10f) * 0.11f);
         leftMovementLimit = -rightMovementLimit;
 
-        if (!GameManager.Instance.isAttacking)
+        if (!GameManager.Instance.isAttacking && GameManager.Instance.canDrag)
         {
             Vector3 tempPosition = playerTransform.localPosition;
             tempPosition.x = Mathf.Clamp(tempPosition.x + (eventData.delta.x / movementSensitivity), leftMovementLimit, rightMovementLimit);

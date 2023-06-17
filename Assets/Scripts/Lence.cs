@@ -34,7 +34,7 @@ public class Lence : MonoBehaviour
         switch (lenceType)
         {
             case LenceType.Add:
-                randomNum = Random.Range(10, 101);
+                randomNum = Random.Range(40, 101);
                 randomNum = randomNum - (randomNum % 5);
                 lenceNum.text = "+" + randomNum;
                 break;

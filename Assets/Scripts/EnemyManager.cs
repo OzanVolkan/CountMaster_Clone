@@ -17,7 +17,7 @@ public class EnemyManager : MonoBehaviour
 
     void Start()
     {
-        int randomCount = Random.Range(20, 81);
+        int randomCount = Random.Range(20, 51);
         Quaternion enemyRot = new Quaternion(0f, 180f, 0f, 1f);
 
         EventManager.Broadcast(GameEvent.OnGenerateStickman, 0, randomCount, enemyStickman, transform, enemyRot);
@@ -48,7 +48,7 @@ public class EnemyManager : MonoBehaviour
                 {
                     var Distance = playerTransform.position - transform.GetChild(i).position;
 
-                    if (Distance.magnitude < 1.5f)
+                    if (Distance.magnitude < 2.5f)
                     {
                         transform.GetChild(i).position = Vector3.Lerp(transform.GetChild(i).position,
                             new Vector3(playerTransform.GetChild(1).position.x, transform.GetChild(i).position.y,

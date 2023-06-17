@@ -13,9 +13,8 @@ public class GameManager : SingletonManager<GameManager>
     public bool isAttacking;
     public bool hasFinished;
     public bool reachedStairs;
+    public bool canDrag;
 
-    private Transform target;
-    private float followOffset = 2.75f;
     private void OnEnable()
     {
         EventManager.AddHandler(GameEvent.OnGenerateStickman, new Action<int, int, GameObject, Transform, Quaternion>(OnGenerateStickman));
@@ -30,6 +29,11 @@ public class GameManager : SingletonManager<GameManager>
         EventManager.RemoveHandler(GameEvent.OnReplaceStickmen, new Action<float, float, Transform>(OnReplaceStickmen));
         EventManager.RemoveHandler(GameEvent.OnFinish, new Action(OnFinish));
         EventManager.RemoveHandler(GameEvent.OnFinishCamFollow, new Action(OnFinishCamFollow));
+    }
+
+    private void Start()
+    {
+        canDrag = true;
     }
 
     #region EVENTS
@@ -62,6 +66,7 @@ public class GameManager : SingletonManager<GameManager>
     {
         finishCam.SetActive(true);
         hasFinished = true;
+        canDrag = false;
     }
 
     void OnFinishCamFollow()
