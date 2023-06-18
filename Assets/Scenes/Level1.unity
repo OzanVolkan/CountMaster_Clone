@@ -1287,6 +1287,10 @@ PrefabInstance:
       propertyPath: playerTransform
       value: 
       objectReference: {fileID: 40759538}
+    - target: {fileID: 5922190821789530791, guid: c6e5fa5e589a5bf40b9911bb599b5884, type: 3}
+      propertyPath: lenceAmount
+      value: 
+      objectReference: {fileID: 1142813692630331007, guid: 490679c4416a9d1419acf71d4b794ebf, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6e5fa5e589a5bf40b9911bb599b5884, type: 3}
 --- !u!1001 &2300011913271442428
@@ -1482,10 +1486,6 @@ PrefabInstance:
     - target: {fileID: 3455241635046586816, guid: 66ac17f0f1ae384479c3ba37eddf8069, type: 3}
       propertyPath: m_Name
       value: Lence
-      objectReference: {fileID: 0}
-    - target: {fileID: 3455241635046586822, guid: 66ac17f0f1ae384479c3ba37eddf8069, type: 3}
-      propertyPath: lenceType
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3455241635046586823, guid: 66ac17f0f1ae384479c3ba37eddf8069, type: 3}
       propertyPath: m_RootOrder

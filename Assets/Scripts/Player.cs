@@ -66,7 +66,14 @@ public class Player : MonoBehaviour
             }
             else
             {
-                enemyTransform.gameObject.SetActive(false);
+                SpriteRenderer area = enemyTransform.parent.GetChild(1).GetComponent<SpriteRenderer>();
+                Color noAlpha = new Color(area.color.r, area.color.g, area.color.b, 0f);
+                area.DOColor(noAlpha,0.4f);
+
+                Vector3 scaledArea = new Vector3(0.4f, 0.4f, 0.4f);
+                enemyTransform.parent.DOScale(scaledArea, 0.4f).OnComplete(()=> {
+                    enemyTransform.parent.gameObject.SetActive(false);
+                });
 
                 GameManager.Instance.isAttacking = false;
                 EventManager.Broadcast(GameEvent.OnReplaceStickmen, distance, radius, transform);
@@ -106,8 +113,9 @@ public class Player : MonoBehaviour
         if (other.CompareTag("Lence"))
         {
             Lence lence = other.GetComponent<Lence>();
-
             int operationNum = other.GetComponent<Lence>().randomNum;
+            string lenceText = lence.GetComponentInChildren<TextMeshProUGUI>().text;
+            EventManager.Broadcast(GameEvent.OnLence, lenceText);
 
             switch (lence.lenceType)
             {
@@ -119,9 +127,10 @@ public class Player : MonoBehaviour
                     EventManager.Broadcast(GameEvent.OnGenerateStickman, totalStickmen, operationNum * totalStickmen, stickman, transform, Quaternion.identity);
                     break;
             }
+            GameObject lenceMatObj = lence.transform.GetChild(2).gameObject;
+            lenceMatObj.SetActive(false);
             OnRunAnimation(GameManager.Instance.isMoving, animators);
             EventManager.Broadcast(GameEvent.OnReplaceStickmen, distance, radius, transform);
-            //2 kere triggera girmemesi için buarada bir þeyler yaz
         }
 
         if (other.CompareTag("Enemy"))
@@ -130,7 +139,6 @@ public class Player : MonoBehaviour
             GameManager.Instance.isAttacking = true;
         }
 
-        childCounter.text = CalculateCount().ToString();
 
         if (other.CompareTag("Finish"))
         {
@@ -141,7 +149,7 @@ public class Player : MonoBehaviour
     }
     private void PositionChecker()
     {
-        //REPLACE Metodunu daha sonra silebilirim, optimizasyon için sürekli çaðýrmayabiliriz
+        childCounter.text = CalculateCount().ToString();
         counterMarkTrans.rotation = Quaternion.LookRotation(counterMarkTrans.position - Camera.main.transform.position);
     }
 

@@ -17,7 +17,9 @@ public enum GameEvent
 
     OnWin,
 
-    OnFail
+    OnFail,
+
+    OnLence
 }
 public static class EventManager
 {
