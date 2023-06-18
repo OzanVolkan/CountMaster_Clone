@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
     {
         childCounter.text = CalculateCount().ToString();
         animators = GetComponentsInChildren<Animator>();
-        InvokeRepeating("PositionChecker", 0.1f, 0.1f);
+        InvokeRepeating("CountChecker", 0.1f, 0.1f);
     }
 
     void Update()
@@ -147,7 +147,7 @@ public class Player : MonoBehaviour
             counterMarkTrans.gameObject.SetActive(false);
         }
     }
-    private void PositionChecker()
+    private void CountChecker()
     {
         childCounter.text = CalculateCount().ToString();
         counterMarkTrans.rotation = Quaternion.LookRotation(counterMarkTrans.position - Camera.main.transform.position);

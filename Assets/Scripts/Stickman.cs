@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 public class Stickman : MonoBehaviour
 {
+    [SerializeField] GameObject[] splashes;
     [SerializeField] GameObject hitVfxObj, meshObj;
     private Animator animator;
     private float distance = 0.1f, radius = 1f;
@@ -18,13 +19,18 @@ public class Stickman : MonoBehaviour
         EventManager.Broadcast(GameEvent.OnWin);
     }
 
-    private IEnumerator DestroyParticle()
+    private void DestroyParticle(bool isRed)
     {
         Destroy(GetComponent<Collider>());
-        meshObj.SetActive(false);
         hitVfxObj.SetActive(true);
+        hitVfxObj.transform.SetParent(null);
 
-        yield return new WaitForSeconds(2f);
+        if (isRed)
+        {
+            int ranInd = Random.Range(0, splashes.Length);
+            splashes[ranInd].SetActive(true);
+            splashes[ranInd].transform.SetParent(null);
+        }
 
         Destroy(gameObject);
     }
@@ -36,12 +42,12 @@ public class Stickman : MonoBehaviour
                 if (other.transform.parent.childCount > 1)
                 {
                     Destroy(other.gameObject);
-                    StartCoroutine(DestroyParticle());
+                    DestroyParticle(true);
                 }
                 break;
 
             case "Obstacle":
-                StartCoroutine(DestroyParticle());
+                DestroyParticle(false);
                 break;
 
             case "Jump":

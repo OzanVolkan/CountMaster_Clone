@@ -95,9 +95,6 @@ public class EnemyManager : MonoBehaviour
             if (playerTransform.childCount <= 1)
             {
                 StopAttacking();
-                
-
-
             }
         }
     }
