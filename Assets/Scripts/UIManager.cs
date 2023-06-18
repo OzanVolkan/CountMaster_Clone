@@ -26,6 +26,7 @@ public class UIManager : MonoBehaviour
     void OnWin()
     {
         winPanel.SetActive(true);
+        GameManager.Instance.finishCam.GetComponentInChildren<ParticleSystem>().Play();
     }
 
     void OnFail()
