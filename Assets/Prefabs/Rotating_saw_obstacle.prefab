@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5787130518844562933}
   - component: {fileID: 5157062659227871872}
   - component: {fileID: 5157062659227871887}
+  - component: {fileID: 6460354040258733614}
   m_Layer: 0
   m_Name: Rotating_saw_obstacle
   m_TagString: Obstacle
@@ -119,6 +120,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.026150681, y: 0.02614938, z: 0.055092156}
   m_Center: {x: -7.488537e-18, y: -8.283758e-18, z: -0.014484765}
+--- !u!114 &6460354040258733614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5427111310756346912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51f9fc9110e52f54f932f0363cbc3aaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5696625414932545294
 GameObject:
   m_ObjectHideFlags: 0

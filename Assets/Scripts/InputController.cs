@@ -54,7 +54,7 @@ public class InputController : MonoBehaviour, IPointerDownHandler, IDragHandler
     }
     void Update()
     {
-        moveSpeed = GameManager.Instance.isAttacking ? 0.5f : 2f;
+        moveSpeed = GameManager.Instance.isAttacking ? 0.25f : 2f;
 
         if (GameManager.Instance.isMoving)
         {

@@ -16,6 +16,7 @@ public class Stickman : MonoBehaviour
         yield return new WaitForSeconds(2f);
         EventManager.Broadcast(GameEvent.OnWin);
     }
+
     private void OnTriggerEnter(Collider other)
     {
         switch (other.tag)
