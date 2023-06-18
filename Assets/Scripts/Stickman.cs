@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 public class Stickman : MonoBehaviour
 {
+    [SerializeField] GameObject hitVfxObj, meshObj;
     private Animator animator;
     private float distance = 0.1f, radius = 1f;
 
@@ -17,6 +18,16 @@ public class Stickman : MonoBehaviour
         EventManager.Broadcast(GameEvent.OnWin);
     }
 
+    private IEnumerator DestroyParticle()
+    {
+        Destroy(GetComponent<Collider>());
+        meshObj.SetActive(false);
+        hitVfxObj.SetActive(true);
+
+        yield return new WaitForSeconds(2f);
+
+        Destroy(gameObject);
+    }
     private void OnTriggerEnter(Collider other)
     {
         switch (other.tag)
@@ -25,12 +36,12 @@ public class Stickman : MonoBehaviour
                 if (other.transform.parent.childCount > 1)
                 {
                     Destroy(other.gameObject);
-                    Destroy(gameObject);
+                    StartCoroutine(DestroyParticle());
                 }
                 break;
 
             case "Obstacle":
-                Destroy(gameObject);
+                StartCoroutine(DestroyParticle());
                 break;
 
             case "Jump":
