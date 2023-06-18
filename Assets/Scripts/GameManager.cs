@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using DG.Tweening;
+using GameAnalyticsSDK;
 using UnityEngine.SceneManagement;
 public class GameManager : SingletonManager<GameManager>
 {
@@ -39,6 +40,8 @@ public class GameManager : SingletonManager<GameManager>
     private void Start()
     {
         canDrag = true;
+        string levelName = SceneManager.GetActiveScene().name;
+        GameAnalytics.NewProgressionEvent(GAProgressionStatus.Start, levelName);
     }
 
     #region EVENTS

@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using System;
 using DG.Tweening;
+using GameAnalyticsSDK;
 public class Player : MonoBehaviour
 {
     public Animator[] animators;
@@ -160,7 +161,7 @@ public class Player : MonoBehaviour
     {
         EventManager.Broadcast(GameEvent.OnGenerateStickman, totalStickmen, 5 + totalStickmen, stickman, transform, Quaternion.identity);
         OnRunAnimation(GameManager.Instance.isMoving, animators);
-        //Game Analytics event
+        GameAnalytics.NewDesignEvent("SaveUsFeature", 1f);
     }
 
     private void OnAddUnits()

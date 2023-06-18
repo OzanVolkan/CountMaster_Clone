@@ -5,6 +5,7 @@ using System;
 using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UI;
+using GameAnalyticsSDK;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] GameData gameData;
@@ -62,6 +63,8 @@ public class UIManager : MonoBehaviour
     {
         winPanel.SetActive(true);
         GameManager.Instance.finishCam.GetComponentInChildren<ParticleSystem>().Play();
+        string levelName = SceneManager.GetActiveScene().name;
+        GameAnalytics.NewProgressionEvent(GAProgressionStatus.Complete, levelName);
     }
 
     void OnFail()
@@ -70,6 +73,8 @@ public class UIManager : MonoBehaviour
         {
             failPanel.SetActive(true);
             GameManager.Instance.isMoving = false;
+            string levelName = SceneManager.GetActiveScene().name;
+            GameAnalytics.NewProgressionEvent(GAProgressionStatus.Fail, levelName);
         }
     }
 
