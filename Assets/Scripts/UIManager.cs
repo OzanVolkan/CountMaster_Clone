@@ -4,10 +4,14 @@ using UnityEngine;
 using System;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] GameObject winPanel, failPanel;
+    [SerializeField] GameData gameData;
+    [SerializeField] GameObject winPanel, failPanel, buttonsPanel;
     [SerializeField] GameObject lenceAmount;
+    [SerializeField] Button unitsButton, incomeButton;
+    [SerializeField] TextMeshProUGUI totalMoney, unitsAmount, unitsLvl, incomeAmount, incomeLvl;
     private void OnEnable()
     {
         EventManager.AddHandler(GameEvent.OnWin, new Action(OnWin));
@@ -23,6 +27,33 @@ public class UIManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnLence, new Action<string>(OnLence));
         EventManager.RemoveHandler(GameEvent.OnSaveUs, new Action(OnSaveUs));
 
+    }
+
+    private void Start()
+    {
+        InvokeRepeating("UICheck", 0.1f, 0.1f);
+    }
+
+    private void UICheck()
+    {
+        if (buttonsPanel.activeInHierarchy)
+        {
+            totalMoney.text = gameData.totalMoney.ToString();
+            unitsAmount.text = gameData.unitsAmount.ToString();
+            unitsLvl.text = gameData.unitsLevel + " LVL";
+            incomeAmount.text = gameData.incomeAmount.ToString();
+            incomeLvl.text = gameData.incomeLevel + " LVL";
+
+            if (gameData.totalMoney >= gameData.unitsAmount)
+                unitsButton.interactable = true;
+            else
+                unitsButton.interactable = false;
+
+            if (gameData.totalMoney >= gameData.incomeAmount)
+                incomeButton.interactable = true;
+            else
+                incomeButton.interactable = false;
+        }
     }
 
     #region EVENTS

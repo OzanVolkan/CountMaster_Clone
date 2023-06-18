@@ -6,4 +6,9 @@ using UnityEngine;
 public class GameData : ScriptableObject
 {
     public Color[] stairColors;
+    public float totalMoney;
+    public float incomeAmount;
+    public float unitsAmount;
+    public int unitsLevel;
+    public int incomeLevel;
 }

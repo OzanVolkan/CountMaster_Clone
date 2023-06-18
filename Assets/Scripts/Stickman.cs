@@ -47,6 +47,9 @@ public class Stickman : MonoBehaviour
                 break;
 
             case "Obstacle":
+                if (GameManager.Instance.playerTransform.childCount <= 2)
+                    EventManager.Broadcast(GameEvent.OnFail);
+
                 DestroyParticle(false);
                 break;
 
@@ -69,7 +72,7 @@ public class Stickman : MonoBehaviour
                     GameManager.Instance.reachedStairs = true;
                     EventManager.Broadcast(GameEvent.OnFinishCamFollow);
                 }
-                
+
                 transform.parent.parent = null; // for instance tower_0
                 transform.parent = null; // stickman
                 GetComponent<Rigidbody>().isKinematic = false;
