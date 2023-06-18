@@ -40,7 +40,7 @@ public class Lence : MonoBehaviour
                 break;
 
             case LenceType.Multiply:
-                randomNum = Random.Range(2, 6);
+                randomNum = Random.Range(2, 4);
                 lenceNum.text = "X" + randomNum;
                 break;
         }

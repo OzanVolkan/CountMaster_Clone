@@ -198,7 +198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51409deecdce1b443b93525501a39ad1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxPlayerPerRow: 8
+  maxPlayerPerRow: 6
   xGap: 0.2
   yGap: 0.39
   yOffset: 0
