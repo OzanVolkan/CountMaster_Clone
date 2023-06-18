@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 public class GameManager : SingletonManager<GameManager>
 {
     public List<GameObject> towerList = new List<GameObject>();
@@ -21,6 +22,8 @@ public class GameManager : SingletonManager<GameManager>
         EventManager.AddHandler(GameEvent.OnReplaceStickmen, new Action<float, float, Transform>(OnReplaceStickmen));
         EventManager.AddHandler(GameEvent.OnFinish, new Action(OnFinish));
         EventManager.AddHandler(GameEvent.OnFinishCamFollow, new Action(OnFinishCamFollow));
+        EventManager.AddHandler(GameEvent.OnSave, new Action(OnSave));
+        EventManager.AddHandler(GameEvent.OnLoad, new Action(OnLoad));
     }
 
     private void OnDisable()
@@ -29,6 +32,8 @@ public class GameManager : SingletonManager<GameManager>
         EventManager.RemoveHandler(GameEvent.OnReplaceStickmen, new Action<float, float, Transform>(OnReplaceStickmen));
         EventManager.RemoveHandler(GameEvent.OnFinish, new Action(OnFinish));
         EventManager.RemoveHandler(GameEvent.OnFinishCamFollow, new Action(OnFinishCamFollow));
+        EventManager.RemoveHandler(GameEvent.OnSave, new Action(OnSave));
+        EventManager.RemoveHandler(GameEvent.OnLoad, new Action(OnLoad));
     }
 
     private void Start()
@@ -74,6 +79,30 @@ public class GameManager : SingletonManager<GameManager>
         Cinemachine.CinemachineVirtualCamera finCam = finishCam.GetComponent<Cinemachine.CinemachineVirtualCamera>();
         finCam.m_Follow = towerList[0].transform;
     }
+    void OnSave()
+    {
+        SaveManager.SaveData(gameData);
+    }
 
+    void OnLoad()
+    {
+#if !UNITY_EDITOR
+        SaveManager.LoadData(gameData);
+#endif
+
+    }
     #endregion
+
+    public void OnApplicationQuit()
+    {
+        OnSave();
+    }
+    public void OnApplicationFocus(bool focus)
+    {
+        if (focus == false) OnSave();
+    }
+    public void OnApplicationPause(bool pause)
+    {
+        if (pause == true) OnSave();
+    }
 }

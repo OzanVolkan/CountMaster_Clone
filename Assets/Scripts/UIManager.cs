@@ -103,6 +103,22 @@ public class UIManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+    public void Units()
+    {
+        EventManager.Broadcast(GameEvent.OnAddUnits);
+        EventManager.Broadcast(GameEvent.OnReplaceStickmen, 0.1f, 1f, GameManager.Instance.playerTransform);
+        gameData.totalMoney -= gameData.unitsAmount;
+        gameData.unitsAmount += 50;
+        gameData.unitsLevel++;
+        EventManager.Broadcast(GameEvent.OnSave);
+    }
+    public void Income()
+    {
+        gameData.totalMoney -= gameData.incomeAmount;
+        gameData.incomeAmount += 50;
+        gameData.incomeLevel++;
+        EventManager.Broadcast(GameEvent.OnSave);
+    }
 
     #endregion
 }

@@ -21,16 +21,21 @@ public class Player : MonoBehaviour
     {
         EventManager.AddHandler(GameEvent.OnRunAnimation, new Action<bool, Animator[]>(OnRunAnimation));
         EventManager.AddHandler(GameEvent.OnSaveUs, new Action(OnSaveUs));
+        EventManager.AddHandler(GameEvent.OnAddUnits, new Action(OnAddUnits));
     }
 
     private void OnDisable()
     {
         EventManager.RemoveHandler(GameEvent.OnRunAnimation, new Action<bool, Animator[]>(OnRunAnimation));
         EventManager.RemoveHandler(GameEvent.OnSaveUs, new Action(OnSaveUs));
+        EventManager.RemoveHandler(GameEvent.OnAddUnits, new Action(OnAddUnits));
     }
     void Start()
     {
+        EventManager.Broadcast(GameEvent.OnGenerateStickman, totalStickmen, GameManager.Instance.gameData.unitsLevel, stickman, transform, Quaternion.identity);
+        EventManager.Broadcast(GameEvent.OnReplaceStickmen, distance, radius, transform);
         childCounter.text = CalculateCount().ToString();
+
         animators = GetComponentsInChildren<Animator>();
         InvokeRepeating("CountChecker", 0.1f, 0.1f);
     }
@@ -70,10 +75,11 @@ public class Player : MonoBehaviour
             {
                 SpriteRenderer area = enemyTransform.parent.GetChild(1).GetComponent<SpriteRenderer>();
                 Color noAlpha = new Color(area.color.r, area.color.g, area.color.b, 0f);
-                area.DOColor(noAlpha,0.4f);
+                area.DOColor(noAlpha, 0.4f);
 
                 Vector3 scaledArea = new Vector3(0.4f, 0.4f, 0.4f);
-                enemyTransform.parent.DOScale(scaledArea, 0.4f).OnComplete(()=> {
+                enemyTransform.parent.DOScale(scaledArea, 0.4f).OnComplete(() =>
+                {
                     enemyTransform.parent.gameObject.SetActive(false);
                 });
 
@@ -153,8 +159,13 @@ public class Player : MonoBehaviour
     private void OnSaveUs()
     {
         EventManager.Broadcast(GameEvent.OnGenerateStickman, totalStickmen, 5 + totalStickmen, stickman, transform, Quaternion.identity);
-        OnRunAnimation(GameManager.Instance.isMoving,animators);
+        OnRunAnimation(GameManager.Instance.isMoving, animators);
         //Game Analytics event
+    }
+
+    private void OnAddUnits()
+    {
+        EventManager.Broadcast(GameEvent.OnGenerateStickman, totalStickmen, 1 + totalStickmen, stickman, transform, Quaternion.identity);
     }
     private void CountChecker()
     {

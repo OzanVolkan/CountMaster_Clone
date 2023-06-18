@@ -21,7 +21,13 @@ public enum GameEvent
 
     OnLence,
 
-    OnSaveUs
+    OnSaveUs,
+
+    OnAddUnits,
+
+    OnSave,
+
+    OnLoad
 }
 public static class EventManager
 {

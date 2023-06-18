@@ -1620,9 +1620,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f92438fe2e0ffd546b4d40e9a0d4ed62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameData: {fileID: 11400000, guid: 4999c00a7da644d4e8249565b3d4887d, type: 2}
   winPanel: {fileID: 554828458}
   failPanel: {fileID: 2131852324}
+  buttonsPanel: {fileID: 1759108361663382857}
   lenceAmount: {fileID: 1142813692630331007, guid: 490679c4416a9d1419acf71d4b794ebf, type: 3}
+  unitsButton: {fileID: 1759108363042885378}
+  incomeButton: {fileID: 1759108362770738408}
+  totalMoney: {fileID: 692841427}
+  unitsAmount: {fileID: 1759108361669698551}
+  unitsLvl: {fileID: 1759108362940594223}
+  incomeAmount: {fileID: 1759108362025241497}
+  incomeLvl: {fileID: 1759108362962172708}
 --- !u!1 &1759108362116292728
 GameObject:
   m_ObjectHideFlags: 0
@@ -2016,7 +2025,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1759108362770738411}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5922190821789530791}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: Income
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1759108362940594221
 GameObject:
   m_ObjectHideFlags: 0
@@ -2112,10 +2133,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32.1
-  m_fontSizeBase: 40
+  m_fontSize: 32
+  m_fontSizeBase: 32
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 0
   m_fontSizeMax: 45
   m_fontStyle: 0
@@ -2249,10 +2270,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 29.65
-  m_fontSizeBase: 40
+  m_fontSize: 32
+  m_fontSizeBase: 32
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 0
   m_fontSizeMax: 45
   m_fontStyle: 0
@@ -2510,7 +2531,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1759108363042885381}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5922190821789530791}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: Units
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1759108363350262919
 GameObject:
   m_ObjectHideFlags: 0
@@ -2528,7 +2561,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1759108363350262918
 RectTransform:
   m_ObjectHideFlags: 0

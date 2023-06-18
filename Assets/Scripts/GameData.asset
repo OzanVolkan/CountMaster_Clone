@@ -18,3 +18,9 @@ MonoBehaviour:
   - {r: 0.5058824, g: 0.8862745, b: 0.5862906, a: 0}
   - {r: 0.8862745, g: 0.5058824, b: 0.8506875, a: 0}
   - {r: 0.5058824, g: 0.6038152, b: 0.8862745, a: 0}
+  totalMoney: 250
+  incomeAmount: 50
+  unitsAmount: 50
+  unitsLevel: 1
+  incomeLevel: 1
+  levelIndex: 1
