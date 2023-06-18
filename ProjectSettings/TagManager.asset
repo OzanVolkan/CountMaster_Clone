@@ -11,6 +11,8 @@ TagManager:
   - Jump
   - Stair
   - Obstacle
+  - Missile
+  - Save
   layers:
   - Default
   - TransparentFX

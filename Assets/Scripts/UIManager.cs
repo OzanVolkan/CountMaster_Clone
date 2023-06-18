@@ -13,12 +13,16 @@ public class UIManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnWin, new Action(OnWin));
         EventManager.AddHandler(GameEvent.OnFail, new Action(OnFail));
         EventManager.AddHandler(GameEvent.OnLence, new Action<string>(OnLence));
+        EventManager.AddHandler(GameEvent.OnSaveUs, new Action(OnSaveUs));
+
     }
     private void OnDisable()
     {
         EventManager.RemoveHandler(GameEvent.OnWin, new Action(OnWin));
         EventManager.RemoveHandler(GameEvent.OnFail, new Action(OnFail));
         EventManager.RemoveHandler(GameEvent.OnLence, new Action<string>(OnLence));
+        EventManager.RemoveHandler(GameEvent.OnSaveUs, new Action(OnSaveUs));
+
     }
 
     #region EVENTS
@@ -45,6 +49,15 @@ public class UIManager : MonoBehaviour
         GameObject lenceEffect = Instantiate(lenceAmount, transform, false);
         lenceEffect.GetComponent<RectTransform>().localPosition = spawnPos;
         lenceEffect.transform.GetComponent<TextMeshProUGUI>().text = lenceText;
+    }
+
+    void OnSaveUs()
+    {
+        Vector2 spawnPos = new Vector2(0f, 400f);
+
+        GameObject lenceEffect = Instantiate(lenceAmount, transform, false);
+        lenceEffect.GetComponent<RectTransform>().localPosition = spawnPos;
+        lenceEffect.transform.GetComponent<TextMeshProUGUI>().text = "+5";
     }
     #endregion
 

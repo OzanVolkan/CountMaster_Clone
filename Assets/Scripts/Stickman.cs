@@ -57,6 +57,12 @@ public class Stickman : MonoBehaviour
                 });
                 break;
 
+            case "Save":
+                Destroy(other.gameObject);
+                EventManager.Broadcast(GameEvent.OnSaveUs);
+                EventManager.Broadcast(GameEvent.OnReplaceStickmen, distance, radius, transform.parent);
+                break;
+
             case "Stair":
                 if (!GameManager.Instance.reachedStairs)
                 {

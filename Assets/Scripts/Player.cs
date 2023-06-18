@@ -20,11 +20,13 @@ public class Player : MonoBehaviour
     private void OnEnable()
     {
         EventManager.AddHandler(GameEvent.OnRunAnimation, new Action<bool, Animator[]>(OnRunAnimation));
+        EventManager.AddHandler(GameEvent.OnSaveUs, new Action(OnSaveUs));
     }
 
     private void OnDisable()
     {
         EventManager.RemoveHandler(GameEvent.OnRunAnimation, new Action<bool, Animator[]>(OnRunAnimation));
+        EventManager.RemoveHandler(GameEvent.OnSaveUs, new Action(OnSaveUs));
     }
     void Start()
     {
@@ -146,6 +148,13 @@ public class Player : MonoBehaviour
             EventManager.Broadcast(GameEvent.OnCreateTower, transform.childCount - 1);
             counterMarkTrans.gameObject.SetActive(false);
         }
+    }
+
+    private void OnSaveUs()
+    {
+        EventManager.Broadcast(GameEvent.OnGenerateStickman, totalStickmen, 5 + totalStickmen, stickman, transform, Quaternion.identity);
+        OnRunAnimation(GameManager.Instance.isMoving,animators);
+        //Game Analytics event
     }
     private void CountChecker()
     {
