@@ -1470,10 +1470,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyArea
       objectReference: {fileID: 0}
-    - target: {fileID: 3389202179307292687, guid: c03b9b8b2f4e4664b8fec80b17f4fed6, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c03b9b8b2f4e4664b8fec80b17f4fed6, type: 3}
 --- !u!1001 &3455241633613369155
@@ -1853,10 +1849,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1737888737417503497, guid: bb2966096414c204e9a70a36dc8cc80c, type: 3}
-      propertyPath: maxPlayerPerRow
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 6204791636819724728, guid: bb2966096414c204e9a70a36dc8cc80c, type: 3}
       propertyPath: m_Name
       value: Player

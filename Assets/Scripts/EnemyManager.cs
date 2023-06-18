@@ -92,7 +92,13 @@ public class EnemyManager : MonoBehaviour
         {
             playerTransform = other.transform;
 
-            if (playerTransform.childCount <= 1) StopAttacking();
+            if (playerTransform.childCount <= 1)
+            {
+                StopAttacking();
+                
+
+
+            }
         }
     }
     private void StopAttacking()

@@ -58,6 +58,11 @@ public class Player : MonoBehaviour
                                 enemyTransform.GetChild(1).position.z), Time.deltaTime);
                     }
                 }
+
+                if (transform.childCount <= 1)
+                {
+                    EventManager.Broadcast(GameEvent.OnFail);
+                }
             }
             else
             {
@@ -130,7 +135,7 @@ public class Player : MonoBehaviour
         if (other.CompareTag("Finish"))
         {
             EventManager.Broadcast(GameEvent.OnFinish);
-            EventManager.Broadcast(GameEvent.OnCreateTower, transform.childCount -1);
+            EventManager.Broadcast(GameEvent.OnCreateTower, transform.childCount - 1);
             counterMarkTrans.gameObject.SetActive(false);
         }
     }

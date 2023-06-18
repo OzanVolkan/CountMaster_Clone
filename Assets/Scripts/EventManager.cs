@@ -13,7 +13,11 @@ public enum GameEvent
 
     OnCreateTower,
 
-    OnFinishCamFollow
+    OnFinishCamFollow,
+
+    OnWin,
+
+    OnFail
 }
 public static class EventManager
 {
