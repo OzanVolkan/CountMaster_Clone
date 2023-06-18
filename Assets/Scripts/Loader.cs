@@ -9,6 +9,7 @@ public class Loader : MonoBehaviour
     void Start()
     {
         GameAnalytics.Initialize();
+        EventManager.Broadcast(GameEvent.OnLoad);
 
         if (gameData.levelIndex < 4)
         {

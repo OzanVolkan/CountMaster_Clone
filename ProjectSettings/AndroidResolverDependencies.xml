@@ -38,8 +38,8 @@
     <file>Assets/Plugins/Android/com.google.android.instantapps.instantapps-1.1.0.aar</file>
   </files>
   <settings>
-    <setting name="androidAbis" value="armeabi-v7a" />
-    <setting name="bundleId" value="com.OzanVolkanAtci.CountMaster_TapNationTest" />
+    <setting name="androidAbis" value="arm64-v8a,armeabi-v7a" />
+    <setting name="bundleId" value="com.OzanVolkanAtci.CountMasterTapNationTest" />
     <setting name="explodeAars" value="True" />
     <setting name="gradleBuildEnabled" value="True" />
     <setting name="gradlePropertiesTemplateEnabled" value="False" />

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.SceneManagement;
@@ -101,7 +99,12 @@ public class UIManager : MonoBehaviour
 
     public void Next()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        gameData.levelIndex++;
+
+        if (SceneManager.GetActiveScene().buildIndex != 3)
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
+        else SceneManager.LoadScene(1);
     }
 
     public void Retry()

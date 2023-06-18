@@ -8,7 +8,6 @@ public class Stickman : MonoBehaviour
     [SerializeField] GameObject hitVfxObj, meshObj;
     private Animator animator;
     private float distance = 0.1f, radius = 1f;
-
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -73,8 +72,8 @@ public class Stickman : MonoBehaviour
                     EventManager.Broadcast(GameEvent.OnFinishCamFollow);
                 }
 
-                transform.parent.parent = null; // for instance tower_0
-                transform.parent = null; // stickman
+                transform.parent.parent = null;
+                transform.parent = null;
                 GetComponent<Rigidbody>().isKinematic = false;
                 GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionZ;
                 GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;

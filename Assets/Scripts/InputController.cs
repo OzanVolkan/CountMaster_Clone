@@ -1,12 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 public class InputController : MonoBehaviour, IPointerDownHandler, IDragHandler
 {
-    //[HideInInspector] public GameObject tutorialPanel;
-
     public float moveSpeed;
     public Transform playerTransform;
 
@@ -14,19 +9,6 @@ public class InputController : MonoBehaviour, IPointerDownHandler, IDragHandler
     [SerializeField] float movementSensitivity;
     [SerializeField] float leftMovementLimit;
     [SerializeField] float rightMovementLimit;
-
-    private void OnEnable()
-    {
-        
-    }
-    private void OnDisable()
-    {
-        
-    }
-    private void Start()
-    {
-        //tutorialPanel = GameObject.Find("TutorialPanel");
-    }
     public void OnDrag(PointerEventData eventData)
     {
         int crowdedness = playerTransform.childCount;
@@ -60,6 +42,5 @@ public class InputController : MonoBehaviour, IPointerDownHandler, IDragHandler
         {
             playerTransform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
         }
-
     }
 }

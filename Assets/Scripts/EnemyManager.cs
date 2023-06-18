@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 public class EnemyManager : MonoBehaviour
@@ -82,8 +80,6 @@ public class EnemyManager : MonoBehaviour
                 }
             }
         }
-
-        //childCounter.text = CalculateCount().ToString();
     }
 
     private void OnTriggerStay(Collider other)

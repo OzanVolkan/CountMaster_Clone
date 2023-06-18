@@ -37,6 +37,10 @@ public class GameManager : SingletonManager<GameManager>
         EventManager.RemoveHandler(GameEvent.OnLoad, new Action(OnLoad));
     }
 
+    private void Awake()
+    {
+        OnLoad();
+    }
     private void Start()
     {
         canDrag = true;
@@ -95,17 +99,18 @@ public class GameManager : SingletonManager<GameManager>
 
     }
     #endregion
-
     public void OnApplicationQuit()
     {
-        OnSave();
+        SaveManager.SaveData(gameData);
     }
     public void OnApplicationFocus(bool focus)
     {
-        if (focus == false) OnSave();
+        if (focus == false) SaveManager.SaveData(gameData);
+
     }
     public void OnApplicationPause(bool pause)
     {
-        if (pause == true) OnSave();
+        if (pause == true) SaveManager.SaveData(gameData);
+
     }
 }

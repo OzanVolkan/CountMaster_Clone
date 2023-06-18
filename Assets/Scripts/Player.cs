@@ -114,9 +114,6 @@ public class Player : MonoBehaviour
         totalStickmen = transform.childCount - 1;
         return totalStickmen;
     }
-
-
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Lence"))
@@ -173,5 +170,4 @@ public class Player : MonoBehaviour
         childCounter.text = CalculateCount().ToString();
         counterMarkTrans.rotation = Quaternion.LookRotation(counterMarkTrans.position - Camera.main.transform.position);
     }
-
 }
